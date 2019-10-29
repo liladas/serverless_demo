@@ -44,6 +44,8 @@ Resources:
           Properties:
             Bucket: !Ref SourceBucket
             Events: s3:ObjectCreated:Put
+  # https://github.com/awslabs/serverless-application-model/issues/300
+  # had to add this resource, because without it, the Event Source wasn't displaying in Lambda Console
   LambdaInvokePermission:
     Type: 'AWS::Lambda::Permission'
     Properties:
