@@ -1,6 +1,5 @@
-# AWS Serverless Demo presented at REPS-MX
+# REPS & Co -- AWS Serverless Demo
 
 Introduction to AWS Serverless
 
 See the [Changelog](./CHANGELOG.md) for the latest happenings to this repo.
-
