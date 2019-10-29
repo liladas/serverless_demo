@@ -1,0 +1,87 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'S3 Triggers Demo
+
+  Sample SAM Template for REPS&Co Demo -- S3 Triggers
+
+  '
+Parameters:
+  BucketNamePrefix:
+    Type: String
+    Default: reps-demo-triggers-bucket
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  SourceBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Sub: ${BucketNamePrefix}-source-bucket
+  DestBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Sub: ${BucketNamePrefix}-dest-bucket
+  S3TriggersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://reps-demo-deployment-pkg/5189c188769f01869989a356a889996b
+      Handler: app.lambda_handler
+      Runtime: python3.7
+      Policies:
+      - S3ReadPolicy:
+          BucketName:
+            Fn::Sub: ${BucketNamePrefix}-source-bucket
+      - S3CrudPolicy:
+          BucketName:
+            Fn::Sub: ${BucketNamePrefix}-dest-bucket
+      Environment:
+        Variables:
+          DestBucket:
+            Fn::Sub: ${BucketNamePrefix}-dest-bucket
+      Events:
+        ImageUpload:
+          Type: S3
+          Properties:
+            Bucket:
+              Ref: SourceBucket
+            Events: s3:ObjectCreated:Put
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - S3TriggersFunction
+        - Arn
+      Action: lambda:InvokeFunction
+      Principal: s3.amazonaws.com
+      SourceAccount:
+        Fn::Sub: ${AWS::AccountId}
+      SourceArn:
+        Fn::GetAtt:
+        - SourceBucket
+        - Arn
+Outputs:
+  SourceBucket:
+    Description: S3 Bucket name that will trigger a Lambda function upon new objects
+      insertion
+    Value:
+      Ref: SourceBucket
+  DestBucket:
+    Description: S3 Bucket name that will store the modified versions of the images
+      from the source bucket
+    Value:
+      Ref: DestBucket
+  S3TriggersFunction:
+    Description: S3 Triggers Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - S3TriggersFunction
+      - Arn
+  S3TriggersFunctionIamRole:
+    Description: Implicit IAM Role created for S3 Triggers function
+    Value:
+      Fn::GetAtt:
+      - S3TriggersFunctionRole
+      - Arn
