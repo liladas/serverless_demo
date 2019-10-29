@@ -16,7 +16,7 @@ STACKNAME = reps-demo-s3-triggers
 
 help: ## display usage and available targets
 	@echo Project Makefile Usage:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 info: ## show project settings
 	@echo app: $(PROJECT)
@@ -51,6 +51,5 @@ delete-stack: ## Delete stack when done
 	aws cloudformation delete-stack --stack-name $(STACKNAME)
 
 open-s3: ## Open S3 for easy uploads
-
 	open https://us-east-2.console.aws.amazon.com/s3/object/reps-demo-triggers-bucket-dest-bucket
 	open https://us-east-2.console.aws.amazon.com/s3/object/reps-demo-triggers-bucket-source-bucket
