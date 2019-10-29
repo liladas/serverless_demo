@@ -1,4 +1,6 @@
-# s3-triggers-sam
+# S3-triggers-sam
+
+_Most* of the text below is copied from the SAM Example Code_
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
@@ -32,6 +34,18 @@ The SAM CLI uses an Amazon S3 bucket to store your application's deployment arti
 
 ```bash
 s3-triggers-sam$ aws s3 mb s3://BUCKET_NAME
+
+# or
+make make-pkg-bucket
+```
+
+To build the application
+
+```bash
+sam build --use-container
+
+# or
+make build
 ```
 
 To prepare the application for deployment, use the `sam package` command.
@@ -40,6 +54,9 @@ To prepare the application for deployment, use the `sam package` command.
 s3-triggers-sam$ sam package \
     --output-template-file packaged.yaml \
     --s3-bucket BUCKET_NAME
+
+# or
+make package
 ```
 
 The SAM CLI creates deployment packages, uploads them to the S3 bucket, and creates a new version of the template that refers to the artifacts in the bucket.
@@ -51,15 +68,17 @@ s3-triggers-sam$ sam deploy \
     --template-file packaged.yaml \
     --stack-name reps-demo-s3-triggers \
     --capabilities CAPABILITY_IAM
+
+# or
+make deploy
 ```
 
-After deployment is complete you can run the following command to retrieve the API Gateway Endpoint URL:
+To view the deployed items
 
 ```bash
-s3-triggers-sam$ aws cloudformation describe-stacks \
-    --stack-name reps-demo-s3-triggers \
-    --query 'Stacks[].Outputs[?OutputKey==`S3TriggersFunction`]' \
-    --output table
+make open
+
+make open-s3
 ```
 
 ## Use the SAM CLI to build and test locally
@@ -68,6 +87,9 @@ Build your application with the `sam build` command.
 
 ```bash
 s3-triggers-sam$ sam build
+
+# or
+make build
 ```
 
 The SAM CLI installs dependencies defined in `s3-triggers-sam/requirements.txt`, creates a deployment package, and saves it in the `./s3-triggers-sam/build` folder.
@@ -112,6 +134,9 @@ To delete the sample application and the bucket that you created, use the AWS CL
 ```bash
 s3-triggers-sam$ aws cloudformation delete-stack --stack-name reps-demo-s3-triggers
 s3-triggers-sam$ aws s3 rb s3://BUCKET_NAME
+
+# or
+make delete-stack
 ```
 
 ## Resources
