@@ -44,9 +44,13 @@ package: ## Package app to s3 deployment dir
 deploy: ## Deploy app/stack
 	sam deploy --template-file packaged.yaml --region $(REGION) --capabilities CAPABILITY_IAM --stack-name $(STACKNAME)
 
+open: ## Open AWS Application console
+	open https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/applications
+
 delete-stack: ## Delete stack when done
 	aws cloudformation delete-stack --stack-name $(STACKNAME)
 
 open-s3: ## Open S3 for easy uploads
+
 	open https://us-east-2.console.aws.amazon.com/s3/object/reps-demo-triggers-bucket-dest-bucket
 	open https://us-east-2.console.aws.amazon.com/s3/object/reps-demo-triggers-bucket-source-bucket
