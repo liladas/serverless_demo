@@ -2,6 +2,8 @@
 
 Introduction to AWS Serverless
 
+[Google Slides - REPS Prezo -- AWS Series -- Serverless Applications with Python](https://docs.google.com/presentation/d/1Dx-7KUNVpKzywl1skV7UHH41SRSPiaYyEkVShvsgTOs/edit?usp=sharing)
+
 ## Hello Upper, a very basic serverless application (single file lambda function)
 
 [Hello Upper](./hello_upper)
