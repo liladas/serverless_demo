@@ -13,7 +13,7 @@ This is just to show how to bundle and zip a very simple application
 
 ## S3 Trigger Events Application using AWS SAM
 
-[Hello Upper](./hello_upper)
+[S3 Triggers](./s3-triggers-sam)
 
 Follow the guide for installation:
 * https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html
