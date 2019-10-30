@@ -4,6 +4,14 @@ Single python file lambda with no dependencies.
 
 Converts a supplied word to all lower or upper [default] case.
 
+# Quick Note:
+
+Make sure to update your AWS_ACCOUNT setting (I should put it in an ENV so it's not committed to source).
+* https://github.com/liladas/serverless_demo/blob/1a5a6c5901e531a5933c264c483e942c883613a1/hello_upper/Makefile#L14
+* The account is used to template out the ROLE_ARN used for the lambda deploy.
+
+Just one of the few deficiencies left over from a hasty session of coding up the demo and making the repo public :)
+
 
 ## Usage
 
