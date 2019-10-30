@@ -1,6 +1,6 @@
 # REPS & Co -- AWS Serverless Demo
 
-# Quick note -- Work-in-Progress
+### Quick note -- Work-in-Progress
 
 This is a work-in-progress/concept I put together for a meetup to present SAM CLI.
 
