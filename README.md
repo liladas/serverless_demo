@@ -1,6 +1,18 @@
 # REPS & Co -- AWS Serverless Demo
 
-Introduction to AWS Serverless
+# Quick note -- Work-in-Progress
+
+This is a work-in-progress/concept I put together for a meetup to present SAM CLI.
+
+You'll have to follow some of the getting started tutorials for getting all the dependencies.
+
+Also check out https://stedolan.github.io/jq/ (used in the makefiles)
+
+Please feel free to submit issues/pull_requests w/ questions/concerns/improvements/needs. 
+
+My intention is to turn this repo into a "Serverless Scaffold" that will include logical placement of settings.py, logging conventions, and other boilerplate to enable faster development while maintaining thoughtful best-practices (like the Makefile scheme).
+
+# Introduction to AWS Serverless
 
 [Google Slides - REPS Prezo -- AWS Series -- Serverless Applications with Python](https://docs.google.com/presentation/d/1Dx-7KUNVpKzywl1skV7UHH41SRSPiaYyEkVShvsgTOs/edit?usp=sharing)
 
